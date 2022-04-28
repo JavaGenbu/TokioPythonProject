@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Helps mobile users -->
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"> <!--Enlace con main.css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css"
+        integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG"
+        crossorigin="anonymous">
+  <title>TFG</title>
+
+</head>
+<body>
+<main>
+  <!--<h1 class=" display-4 text-center"> Suministros Cabanel </h1> -->
+</main>
+
+<!-- Menú desplegable para elegir el tipo de acceso a la web -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Suministros Cabanel</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Accesos
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="/clientes">Acceso clientes</a></li>
+            <li><a class="dropdown-item" href="/administradores">Acceso adminstradores</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<ul class="list-group list-group-horizontal-xl">
+  <li class="list-group-item">
+    <ul>
+      <!-- Gracias a Jinja se puede introducir codigo Python en nuestro HTML y Python se encarga de ejecutarlo e interpretarlo -->
+      {% for producto in listaDeProductos %}
+      <ul class="list-group-item">
+        <li>
+          <ul class="list-group list-group-horizontal ">
+            <li class="list-group-item">ID</li>
+            <li class="list-group-item flex-fill">
+              {{producto.id}}
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-group list-group-horizontal ">
+            <li class="list-group-item">Proveedor</li>
+            <li class="list-group-item flex-fill">
+              {{producto.proveedor}}
+            </li>
+          </ul>
+        <li>
+          <ul class="list-group list-group-horizontal ">
+            <li class="list-group-item">Nombre</li>
+            <li class="list-group-item flex-fill">
+              {{producto.nombreProd}}
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item ">Descripción</li>
+            <li class="list-group-item flex-fill ">
+              {{producto.descripcion}}
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item ">Stock en almacén</li>
+            <li class="list-group-item flex-fill">
+              {{producto.stock}}
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item ">Stock maximo</li>
+            <li class="list-group-item flex-fill">
+              {{producto.stockMax}}
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item ">Lugar almacenado</li>
+            <li class="list-group-item flex-fill">
+              {{producto.lugar}}
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item " >Precio compra</li>
+            <li class="list-group-item flex-fill">
+              {{producto.precioCompra}}
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item ">Precio venta</li>
+            <li class="list-group-item flex-fill">
+              {{producto.precioVenta}}
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="/eliminarProducto/{{producto.id}}" style="text-decoration:none">
+            <button> Eliminar de la base de datos </button>
+          </a>
+        </li>
+      </ul>
+      {% endfor %}
+    </ul>
+  </li>
+</ul>
+
+<!-- Site footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h6>About</h6>
+        <p class="text-justify">Página de proyecto final de Jose Antonio Valero Aige para Tokio School. Todo el código ha sido escrito por mi. La marca Cabanel no está registrada. </p>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>Software Stack</h6>
+        <ul class="footer-links">
+          <li><a href="https://www.python.org/">Python</a></li>
+          <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
+          <li><a href="https://www.sqlalchemy.org/">SQL Alchemy</a></li>
+          <li><a href="https://flask.palletsprojects.com/en/2.0.x/">Flask</a></li>
+        </ul>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>Quick Links</h6>
+        <ul class="footer-links">
+          <li><a href="/clientes">Acceso clientes</a></li>
+          <li><a href="/administradores">Acceso administradores</a></li><h6>Contact</h6>
+          <li>CONTACT@CABANEL.COM</li>
+          <li>ALTA@CABANEL.COM</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-6 col-xs-12">
+        <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by Cabanel
+        </p>
+      </div>
+
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <ul class="social-icons">
+          <li><a class="linkedin" href="https://www.linkedin.com/in/jose-antonio-valero-aige-2531731b3/"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Script necesario para que funcionen los menús interactivos con Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+</body>
+</html>
